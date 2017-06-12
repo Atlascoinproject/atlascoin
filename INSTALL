@@ -1,0 +1,12 @@
+Building AtlasCoin
+
+See doc/build-ubuntu.txt for instructions on deploying Atlascoind .
+
+
+See doc/readme-qt.rst for instructions on building AtlasCoin QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of AtlasCoin.
+
+See doc/build-*.txt for instructions on building AtlasCoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of AtlasCoin.
