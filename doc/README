@@ -1,10 +1,10 @@
-
 Copyright (c) 2014 AtlasCoin Developers
 
 
 AtlasCoin 1.0.0.1 BETA
 
-Copyright (c) 014 AtlasCoin Developers
+Copyright (c) 2017 AtlasCoin Developers
+Copyright (c) 2014 AtlasCoin Developers
 Copyright (c) 2013-2014 CloakCoin Developers
 Copyright (c) 2013 NovaCoin Developers
 Copyright (c) 2011-2012 Bitcoin Developers
@@ -45,7 +45,4 @@ AtlasCoind stop
 Start up the new AtlasCoind.
 
 
-See the documentation/wiki at the AtlasCoin site:
-  http://stealth-coin.com/
-for help and more information.
 
