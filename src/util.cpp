@@ -143,7 +143,7 @@ void RandAddSeedPerfmon()
 {
     RandAddSeed();
 
-    // This can take up to 2 seconds, so only do it every 10 minutes
+    // This can take up to 2 seconds, so only do it every 10 minutes 
     static int64 nLastPerfmon;
     if (GetTime() < nLastPerfmon + 10 * 60)
         return;
@@ -1327,10 +1327,11 @@ void AddTimeData(const CNetAddr& ip, int64 nTime)
 
 string FormatVersion(int nVersion)
 {
+    //convention to C++11 to prepare for rebase
     if (nVersion%100 == 0)
-        return strprintf("%d.%d.%d", nVersion/1000000, (nVersion/10000)%100, (nVersion/100)%100);
+        return strprintf(" %d.%d.%d ", nVersion/1000000, (nVersion/10000)%100, (nVersion/100)%100);
     else
-        return strprintf("%d.%d.%d.%d", nVersion/1000000, (nVersion/10000)%100, (nVersion/100)%100, nVersion%100);
+        return strprintf(" %d.%d.%d.%d ", nVersion/1000000, (nVersion/10000)%100, (nVersion/100)%100, nVersion%100);
 }
 
 string FormatFullVersion()
@@ -1383,6 +1384,8 @@ void runCommand(std::string strCommand)
 void RenameThread(const char* name)
 {
 #if defined(PR_SET_NAME)
+    //always assert null ptr
+    assert(name != NULL);
     // Only the first 15 characters are used (16 - NUL terminator)
     ::prctl(PR_SET_NAME, name, 0, 0, 0);
 #elif 0 && (defined(__FreeBSD__) || defined(__OpenBSD__))

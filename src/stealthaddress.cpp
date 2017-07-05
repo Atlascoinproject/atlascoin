@@ -1,7 +1,8 @@
 // Copyright (c) 2014 The ShadowCoin developers
+// Copyright (c) 2017 AtlasCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
-
+// Applying Stealthcoin address for extra layer of anonymity
 #include "stealthaddress.h"
 #include "base58.h"
 
@@ -11,7 +12,7 @@
 #include <openssl/ecdsa.h>
 #include <openssl/obj_mac.h>
 
-//const uint8_t stealth_version_byte = 0x2a;
+//const uint8_t stealth_version_byte = 0x28;
 const uint8_t stealth_version_byte = 0x28;
 
 
@@ -215,6 +216,7 @@ int SecretToPublicKey(const ec_secret& secret, ec_point& out)
 int StealthSecret(ec_secret& secret, ec_point& pubkey, const ec_point& pkSpend, ec_secret& sharedSOut, ec_point& pkOut)
 {
     /*
+    
     
     send:
         secret = ephem_secret, pubkey = scan_pubkey
@@ -653,19 +655,19 @@ bool IsStealthAddress(const std::string& encodedAddress)
     
     if (!DecodeBase58(encodedAddress, raw))
     {
-        //printf("IsStealthAddress DecodeBase58 falied.\n");
+        //dbgprintf("IsStealthAddress DecodeBase58 falied.\n");
         return false;
     };
     
     if (!VerifyChecksum(raw))
     {
-        //printf("IsStealthAddress verify_checksum falied.\n");
+        //dbgprintf("IsStealthAddress verify_checksum falied.\n");
         return false;
     };
     
     if (raw.size() < 1 + 1 + 33 + 1 + 33 + 1 + 1 + 4)
     {
-        //printf("IsStealthAddress too few bytes provided.\n");
+        //dbgprintf("IsStealthAddress too few bytes provided.\n");
         return false;
     };
     
@@ -675,7 +677,7 @@ bool IsStealthAddress(const std::string& encodedAddress)
     
     if (version != stealth_version_byte)
     {
-        //printf("IsStealthAddress version mismatch 0x%x != 0x%x.\n", version, stealth_version_byte);
+        //dbgprintf("IsStealthAddress version mismatch 0x%x != 0x%x.\n", version, stealth_version_byte);
         return false;
     };
     

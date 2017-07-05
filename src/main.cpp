@@ -43,6 +43,7 @@ static CBigNum bnProofOfStakeLimit(~uint256(0) >> 2);
 static CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 static CBigNum bnProofOfStakeLimitTestNet(~uint256(0) >> 30);
 
+//atlascoin specs
 unsigned int nStakeMinAge = 60 * 60 * 24 * 15;	//minimum age for coin age:  15 day
 unsigned int nStakeMaxAge = 60 * 60 * 24 * 30;	//stake age of full weight:  30 day
 unsigned int nStakeTargetSpacing = 60*2;			// 60 *2 sec block spacing

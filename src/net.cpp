@@ -1781,9 +1781,9 @@ static void run_tor() {
     char *argvLogDecl = (char*) logDecl.c_str();
 
     char* argv[] = {
-        "tor",
-        "--hush",
-        "--Log",
+        (char*)"tor",
+        (char*)"--hush",
+        (char*)"--Log",
         argvLogDecl
     };
 

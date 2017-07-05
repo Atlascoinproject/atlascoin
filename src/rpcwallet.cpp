@@ -1,5 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2016-2017 AtlasCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1890,6 +1891,7 @@ Value importstealthaddress(const Array& params, bool fHelp)
             "importstealthaddress <scan_secret> <spend_secret> [label]\n"
             "Import an owned Stealth Addresses.");
 
+
     std::string sScanSecret  = params[0].get_str();
     std::string sSpendSecret = params[1].get_str();
     std::string sLabel;
@@ -1988,7 +1990,7 @@ Value importstealthaddress(const Array& params, bool fHelp)
     return result;
 }
 
-
+//should work under any circumstances (both parts should be stealth addresses
 Value sendtostealthaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 5)
@@ -2039,11 +2041,12 @@ Value sendtostealthaddress(const Array& params, bool fHelp)
 
 Value clearwallettransactions(const Array& params, bool fHelp)
 {
+    //todo:wallet backup  automation
     if (fHelp || params.size() > 0)
         throw runtime_error(
             "clearwallettransactions \n"
             "delete all transactions from wallet - reload with scanforalltxns\n"
-            "Warning: Backup your wallet first!");
+            "Warning: Backup your wallet first! (You could loose your coins Backing up your wallet is RECOMMENDED");
 
 
 
@@ -2165,7 +2168,7 @@ Value scanforalltxns(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
         throw runtime_error(
-            "scanforalltxns [fromHeight]\n"
+            "Scanforalltxns [fromHeight]\n"
             "Scan blockchain for owned transactions.");
 
     Object result;
@@ -2197,7 +2200,7 @@ Value scanforalltxns(const Array& params, bool fHelp)
         pwalletMain->ScanForWalletTransactions(pindex, true);
         pwalletMain->ReacceptWalletTransactions();
     }
-
+    //scan complete (extra gen verification)
     result.push_back(Pair("result", "Scan complete."));
 
     return result;
@@ -2207,6 +2210,7 @@ Value scanforstealthtxns(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
         throw runtime_error(
+                //scanning for stealth tnx on chain tested
             "scanforstealthtxns [fromHeight]\n"
             "Scan blockchain for owned stealth transactions.");
 
